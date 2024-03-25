@@ -1,0 +1,62 @@
+﻿@model List<ContactDTO>
+@{
+    Layout = "_AdminLayout";
+}
+<script src="~/assets/js/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Mesajlar</h4>
+        <div class="table-responsive">
+                @if (Model.Count>=1)
+                {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ad</th>
+                            <th>Mail Adres</th>
+                            <th>İletişim</th>
+                            <th>Mesaj</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>@item.Name</td>
+                                <td>@item.Email</td>
+                                <td>@item.PhoneNumber</td>
+                                <td>@item.Message</td>
+                                <td>
+                                    <button class="btn btn-outline-danger">@Html.ActionLink("Sil", "DeleteContact",new{id=item.Id}, new { onclick = "return confirm('Silmek istediğinizden emin misiniz?')"})</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                       </table>
+                }
+            else
+            {
+            <h5>Hiç Mesajınız Bulunmuyor.</h5>
+            }
+        </div>
+        <input style="display:none;" id="bag" value="@ViewBag.Message" />
+    </div>
+</div>
+<script>
+    var data = document.getElementById("bag").value;
+    console.log("DATA " + data);
+    if (data == "Başarılı") {
+        swal("Mesaj Silindi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız") {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    } 
+</script>

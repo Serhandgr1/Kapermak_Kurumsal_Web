@@ -1,0 +1,65 @@
+﻿@model List<NewAboutClient>
+@{
+    Layout = "_AdminLayout";
+}
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Hakkımda Yazıları</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>EnTitle</th>
+                        <th>Contents</th>
+                        <th>EnContents</th>
+                        <th>Image</th>
+                        <th>Image2</th>
+                        <th>Image3</th>
+                        <th>Sil/Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td><p style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@item.Title</p></td>
+                            <td><p style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@item.EnTitle</p></td>
+                            <td><p style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@item.Contents</p></td>
+                            <td><p style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@item.EnContents</p></td>
+                            <td><img style="width:75px; height:50px;" src="~/assets/images/@item?.ImageClient"/></td>
+                            <td><img style="width:75px; height:50px;" src="~/assets/images/@item?.ImageClient2"/></td>
+                            <td><img style="width:75px; height:50px;" src="~/assets/images/@item?.ImageClient3"/></td>
+                            <td>
+                                <button class="btn btn-outline-danger" id="btn1">@Html.ActionLink("Sil", "DeleteAboute",new{id=item.Id}, new { @class="btn btn-warning", onclick = "return confirm('Silmek istediğinizden emin misiniz?')"})</button>
+                                <a class="btn btn-outline-warning" href="@Url.Action("GetUpdateAboutIndex" , "Abouts" , new {Id=item.Id,Contents=item.Contents,EnContents=item.EnContents,Title=item.Title,EnTitle=item.EnTitle,ImageClient=item.ImageClient,ImageClient2=item.ImageClient2,ImageClient3=item.ImageClient3})">Güncelle</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <input style="display:none;" id="bag" value="@ViewBag.Message" />
+    </div>
+</div>
+<script>
+    var data = document.getElementById("bag").value;
+    console.log("DATA " + data);
+    if (data == "Başarılı") {
+        swal("Yorum Silindi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız") {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    } else if (data == "UpdateBaşarılı") {
+        swal("Güncelleme işleminiz başarı!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    }
+</script>

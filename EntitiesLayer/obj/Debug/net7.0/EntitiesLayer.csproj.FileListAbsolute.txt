@@ -1,0 +1,12 @@
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\bin\Debug\net7.0\EntitiesLayer.deps.json
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\bin\Debug\net7.0\EntitiesLayer.dll
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\bin\Debug\net7.0\EntitiesLayer.pdb
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\obj\Debug\net7.0\EntitiesLayer.csproj.AssemblyReference.cache
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\obj\Debug\net7.0\EntitiesLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\obj\Debug\net7.0\EntitiesLayer.AssemblyInfoInputs.cache
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\obj\Debug\net7.0\EntitiesLayer.AssemblyInfo.cs
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\obj\Debug\net7.0\EntitiesLayer.csproj.CoreCompileInputs.cache
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\obj\Debug\net7.0\EntitiesLayer.dll
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\obj\Debug\net7.0\refint\EntitiesLayer.dll
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\obj\Debug\net7.0\EntitiesLayer.pdb
+C:\Users\dogru\source\repos\Institutional\EntitiesLayer\obj\Debug\net7.0\ref\EntitiesLayer.dll

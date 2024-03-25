@@ -1,0 +1,71 @@
+﻿@model List<ContactAdminDTO>
+@{
+    Layout = "_AdminLayout";
+}
+<script src="~/assets/js/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Admin İletişim Bilgileri</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Admin Mail</th>
+                        <th>Admin Numara</th>
+                        <th>Admin Adres</th>
+                        <th>Sil/Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.AdminMail</td>
+                            <td>@item.AdminPhoneNumber</td>
+                            <td>@item.AdminAddress</td>
+                            <td>
+                                @if (Model.Count < 2)
+                                {
+                                    <button class="btn btn-outline-danger" id="btn1" onclick="Sil()">Silinemez</button>
+                                }else
+                                {
+                                    <button class="btn btn-outline-danger">@Html.ActionLink("Sil", "DeleteAdminContact",new{id=item.Id}, new { @class="btn btn-warning", onclick = "return confirm('Silmek istediğinizden emin misiniz?')"})</button>
+                                }
+                                <a class="btn btn-outline-warning" href="@Url.Action("GetUpdateContactAdmin" , "ContactAdmins" , new {Id=item.Id,AdminMail=item.AdminMail,AdminPhoneNumber=item.AdminPhoneNumber,AdminAddress=item.AdminAddress})">Güncelle</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    function Sil()
+    {
+        swal("Sistemde Kayıtlı en az 1 admin olmalıdır! Bu admini silemezsiniz", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    }
+    var data = document.getElementById("bag").value;
+    console.log("DATA " + data);
+    if (data == "Başarılı") {
+        swal("Admin Bilgileri Silindi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız") {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    } else if (data == "UpdateBaşarılı") {
+        swal("Güncelleme işleminiz başarı!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    }
+</script>

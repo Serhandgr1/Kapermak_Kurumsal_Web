@@ -1,0 +1,48 @@
+﻿@model NewServiceDto
+@{
+    Layout = "_AdminLayout";
+}
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Hizmet Güncelle</h4>
+            <p class="card-description"> Hizmet Bilgileri </p>
+            <form class="forms-sample" asp-action="UpdateService" method="post" asp-controller="Servic">
+                <div class="form-group">
+                    <input type="text" asp-for="Id" style="display:none"/>
+                    <label for="exampleInputName1">Hizmet Adı</label>
+                    <input type="text" asp-for="ServiceTitle" class="form-control" id="exampleInputName1" placeholder="Hizmet Adı">
+                </div>
+                <div class="form-group">
+                    <input type="text" asp-for="Id" style="display:none" />
+                    <label for="exampleInputName1">En Hizmet Adı</label>
+                    <input type="text" asp-for="EnServiceTitle" class="form-control" id="exampleInputName1" placeholder="En Hizmet Adı">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Hizmet Açıklaması</label>
+                    <input type="text" asp-for="ServiceDetail" class="form-control" id="exampleInputEmail3" placeholder="Hizmet Açıklaması">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">En Hizmet Açıklaması</label>
+                    <input type="text" asp-for="EnServiceDetail" class="form-control" id="exampleInputEmail3" placeholder="En Hizmet Açıklaması">
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelectGender">Tercih sebebi Avatarı seç</label>
+                    <select class="form-control" asp-for="ServiceImage" data-selected=@Model.ServiceImage id="exampleSelectGender">
+                        <option value="Montaj">Montaj</option>
+                        <option value="Mühendis">Mühendis</option>
+                        <option value="Üretim">Üretim</option>
+                        <option value="Taşıyıcı">Taşıyıcı</option>
+                    </select>
+                </div>
+                <button type="submit" id="btn" class="btn btn-primary mr-2">GÖNDER</button>
+                <a class="btn btn-dark" href="@Url.Action("GetAllServiceIndex","Servic")">VAZGEÇ</a>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('[data-selected]').forEach(e => {
+        e.value = e.dataset.selected
+    });
+</script>

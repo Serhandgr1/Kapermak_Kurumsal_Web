@@ -1,0 +1,77 @@
+﻿@model NewProductClient
+@{
+    Layout = "_AdminLayout";
+}
+<script src="~/assets/js/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Ürün Ekle</h4>
+            <p class="card-description"> Ürün Bilgileri </p>
+            <form class="forms-sample" asp-action="PostsProduct" method="post" asp-controller="Produc" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputName1">Ürün Adı</label>
+                    <input type="text" asp-for="ProductTitle" class="form-control" id="exampleInputName1" placeholder="Ürün Adı" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">İngilizce Ürün Adı</label>
+                    <input type="text" asp-for="EnProductTitle" class="form-control" id="exampleInputName1" placeholder="Ürün Adı" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">Ürün Açıklaması</label>
+                    <input type="text" asp-for="ProductDetail" class="form-control" id="exampleInputName2" placeholder="Ürün Açıklaması" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">İngilizce Ürün Açıklaması</label>
+                    <input type="text" asp-for="EnProductDetail" class="form-control" id="exampleInputName2" placeholder="Ürün Açıklaması" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName3">Ürün Özellikleri</label>
+                    <input type="text" asp-for="ProductSpacial" class="form-control" id="exampleInputName3" placeholder="Ürün Özellikleri">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName3">İngilizce Ürün Özellikleri</label>
+                    <input type="text" asp-for="EnProductSpacial" class="form-control" id="exampleInputName3" placeholder="Ürün Özellikleri">
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelectGender">Ürün Kategorisi</label>
+                    <select class="form-control" asp-for="CategoryName" id="exampleSelectGender">
+                        <option>Un</option>
+                        <option>Yem</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Resim Yükle (Zorunlu)</label><br/>
+                    <input type="file" name="ProductImage" asp-for="ProductImage" class="btn btn-primary" required>
+                </div>
+                <div class="form-group">
+                    <label>2.Resim Yükle (Zorunlu)</label><br />
+                    <input type="file" name="ProductImage2" asp-for="ProductImage2" class="btn btn-primary" required>
+                </div>
+                <div class="form-group">
+                    <label>3.Resim Yükle (Zorunlu)</label><br />
+                    <input type="file" name="ProductImage3" asp-for="ProductImage3" class="btn btn-primary" required>
+                </div>
+                <button type="submit" id="btn" class="btn btn-primary mr-2">GÖNDER</button>
+                <a class="btn btn-dark">VAZGEÇ</a>
+            </form>
+        </div>
+        <input id="bag" style="display:none;" value="@ViewBag?.Message" />
+    </div>
+</div>
+<script>
+    var data = document.getElementById("bag").value;
+    console.log("DATA " + data);
+    if (data == "Başarılı") {
+        swal("Ürün Eklendi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız") {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    }
+</script>

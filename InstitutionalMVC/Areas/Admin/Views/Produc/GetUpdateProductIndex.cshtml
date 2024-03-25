@@ -1,0 +1,91 @@
+﻿@model NewProductClient
+@{
+    Layout = "_AdminLayout";
+}
+<script src="~/assets/js/jquery-3.4.1.min.js"></script>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Ürün Güncelle</h4>
+            <p class="card-description"> Ürün Bilgileri </p>
+            <form class="forms-sample" asp-action="UpdateProduct" method="post" asp-controller="Produc" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="text" asp-for="Id" style="display:none;">
+                    <label for="exampleInputName1">Ürün Adı</label>
+                    <input type="text" asp-for="ProductTitle" class="form-control" id="exampleInputName1" placeholder="Ürün Adı" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" asp-for="Id" style="display:none;">
+                    <label for="exampleInputName1">İngiizce Ürün Adı</label>
+                    <input type="text" asp-for="EnProductTitle" class="form-control" id="exampleInputName1" placeholder="Ürün Adı" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">Ürün Açıklaması</label>
+                    <input type="text" asp-for="ProductDetail" class="form-control" id="exampleInputName2" placeholder="Ürün Açıklaması" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">İngilizce Ürün Açıklaması</label>
+                    <input type="text" asp-for="EnProductDetail" class="form-control" id="exampleInputName2" placeholder="Ürün Açıklaması" required>
+                </div>
+                 <div class="form-group">
+                    <label for="exampleInputName3">Ürün Özellikleri</label>
+                    <input type="text" asp-for="ProductSpacial" class="form-control" id="exampleInputName3" placeholder="Ürün Özellikleri">
+                </div>
+                    <div class="form-group">
+                        <label for="exampleInputName3">İngilizce Ürün Özellikleri</label>
+                    <input type="text" asp-for="EnProductSpacial" class="form-control" id="exampleInputName3" placeholder="Ürün Özellikleri">
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelectGender">Ürün Kategorisi</label>
+                    <select class="form-control" asp-for="CategoryName" data-selected=@Model.CategoryName id="exampleSelectGender">
+                        @foreach (var item in @ViewBag.Category)
+                        {
+                            <option value="@item.CategoryName">@item.CategoryName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Resim Yükle (Zorunlu)</label><br />
+                    <input type="file" name="ProductImage" asp-for="ProductImage" class="btn btn-primary">
+                    @if (!string.IsNullOrEmpty(Model.Image))
+                    {
+                        <p>Mevcut Resim</p>
+
+                        <img name="Image" asp-for="Image" src="~/assets/images/@Model?.Image" style="width:75px; height:50px;" />
+
+                    }
+                </div>
+                <div class="form-group">
+                    <label>2.Resim Yükle (isteğe bağlı)</label><br />
+                    <input type="file" name="ProductImage2" asp-for="ProductImage2" class="btn btn-primary">
+                    @if (!string.IsNullOrEmpty(Model.Image2))
+                    {
+                        <p>Mevcut Resim</p>
+
+                        <img name="Image" asp-for="Image" src="~/assets/images/@Model?.Image2" style="width:75px; height:50px;" />
+
+                    }
+                </div>
+                <div class="form-group">
+                    <label>3.Resim Yükle (isteğe bağlı)</label><br />
+                    <input type="file" name="ProductImage3" asp-for="ProductImage3" class="btn btn-primary">
+                    @if (!string.IsNullOrEmpty(Model.Image3))
+                    {
+                        <p>Mevcut Resim</p>
+
+                        <img name="Image" asp-for="Image" src="~/assets/images/@Model?.Image3" style="width:75px; height:50px;" />
+
+                    }
+                </div>
+                <button type="submit" id="btn" class="btn btn-primary mr-2">GÖNDER</button>
+                <a class="btn btn-dark" href="@Url.Action("GetIndex","Produc",new{updated="delete"})">VAZGEÇ</a>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('[data-selected]').forEach(e => {
+        e.value = e.dataset.selected
+    });
+    console.log("çalıştı product category");
+</script>

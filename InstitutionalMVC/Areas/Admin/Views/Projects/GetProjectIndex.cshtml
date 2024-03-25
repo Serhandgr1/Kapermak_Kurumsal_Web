@@ -1,0 +1,65 @@
+﻿@model List<ProjectDTO>
+@{
+    Layout = "_AdminLayout";
+}
+<link href="~/assets/css/main.css" rel="stylesheet" />
+<script src="~/assets/js/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Projeler</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Proje Adı</th>
+                        <th>Proje Detayı</th>
+                        <th>Resim</th>
+                        <th>Sil/Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td><p style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@item.ProjectTitle</p> </td>
+                            <td><p style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@item.ProjectDetail</td>
+                            <td><img style="width:75px; height:50px;" src="~/assets/images/@item.ProjectImage" /></td>
+                            <td>
+                                <button class="btn btn-outline-danger" id="btn1">@Html.ActionLink("Sil", "DeleteProject",new{id=item.Id}, new { @class="btn btn-warning", onclick = "return confirm('Silmek istediğinizden emin misiniz?')"})</button>
+                                <a class="btn btn-outline-warning" href="@Url.Action("GetUpdateProjeIndex" , "Projects" , new {Id=item.Id,ProjectTitle=item.ProjectTitle,ProjectDetail=item.ProjectDetail,ProjectImage=item.ProjectImage})">Güncelle</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <input style="display:none;" id="bag" value="@ViewBag.Message" />
+    </div>
+</div>
+<br />
+<br />
+<a class="btn btn-outline-danger" href="@Url.Action("GetAllProjectIndex", "Projects",  new{PageNumber=(@ViewBag.PageNumber>1?@ViewBag.PageNumber-1:@ViewBag.PageNumber)})">Previous</a>
+<a class="btn btn-outline-danger" href="@Url.Action("GetAllProjectIndex", "Projects",  new{PageNumber=(Model.Count==@ViewBag.screenSize?@ViewBag.PageNumber+1:@ViewBag.PageNumber)})">Next</a>
+
+<script>
+    var data = document.getElementById("bag").value;
+    if (data == "Başarılı") {
+        swal("Proje Silindi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız") {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    } else if (data == "UpdateBaşarılı") {
+        swal("Güncelleme işleminiz başarı!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    }
+</script>

@@ -1,0 +1,36 @@
+﻿@model CategoryDTO
+@{
+    Layout = "_AdminLayout";
+}
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Kategori Ekle</h4>
+            <p class="card-description"> Kategori Bilgileri </p>
+            <form class="forms-sample" asp-action="PostCategory" method="post" asp-controller="Category">
+                <div class="form-group">
+                    <label for="exampleInputName1">Kategori Adı</label>
+                    <input type="text" asp-for="CategoryName" class="form-control" id="exampleInputName1" placeholder="Kategori Adı">
+                </div>
+                <button type="submit" id="btn" class="btn btn-primary mr-2">GÖNDER</button>
+                <a class="btn btn-dark">VAZGEÇ</a>
+            </form>
+        </div>
+    </div>
+    <input id="bag" style="display:none;" value="@ViewBag?.Message" />
+</div>
+<script>
+    var data = document.getElementById("bag").value;
+    console.log("DATA " + data);
+    if (data == "Başarılı") {
+        swal("Kategori Eklendi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız") {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    }
+</script>

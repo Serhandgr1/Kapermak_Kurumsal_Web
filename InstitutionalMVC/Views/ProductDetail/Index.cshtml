@@ -1,0 +1,119 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer localizer
+<header class="">
+    <div class="header_bottom" style="box-shadow: 0px 0px  30px black; background-color:#e8e8e8;">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="index.html">
+                    <img src="~/assets/images/logo.png" alt="">
+                </a>
+
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""> </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav  ">
+                        <li class="nav-item  ">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">@localizer["Home"]<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" asp-controller="Services" asp-action="Index">@localizer["Hizmetler"]</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" asp-controller="About" asp-action="Index">@localizer["Hakkımızda"]</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-controller="Products" asp-action="Index">@localizer["Ürünler"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Contact" asp-action="Index">@localizer["İletişim"]</a>
+                        </li>
+                        <partial name="_SelectLanguage" />
+
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<section id="product-page" style="background-color:#e8e8e8;">
+    <div class="product-details">
+     
+        <div class="product-img">
+
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <img src="~/assets/images/shoe-1.png" />
+                    </div>
+         
+                    <div class="swiper-slide">
+                        <img src="~/assets/images/shoe-2.png" />
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <img src="~/assets/images/shoe-3.png" />
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <img src="~/assets/images/shoe-4.png" />
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="slider-btns">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+            <div class="img-social-bar">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+        <!--**Text************************-->
+        <div class="product-text">
+            <!--category-->
+            <span class="product-category">Women Clothes & Dresses</span>
+            <h3>ASOS Women Clothe</h3>
+            <span class="product-price">$135.3</span>
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis laboriosam vitae ab aspernatur qui facere a commodi cupiditate praesentium. Aliquam, voluptatem est debitis consequuntur ex autem exercitationem quas dolorem alias?
+                <br />
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illo, enim non molestias dolores eos officia minima quidem architecto labore soluta? Expedita officiis voluptas sapiente officia debitis, mollitia eum quia.
+            </p>
+            <!--size-->
+            <div class="product-size-container">
+                <strong>Select Size:-</strong>
+                <div class="product-size">
+                    <!--xl-->
+                    <input type="checkbox" class="s-checkbox" id="s-xl">
+                    <label for="s-xl" class="s-label">XL</label>
+                    <!--Small-->
+                    <input type="checkbox" class="s-checkbox" id="s-s">
+                    <label for="s-s" class="s-label">S</label>
+                    <!--Medium-->
+                    <input type="checkbox" class="s-checkbox" id="s-m">
+                    <label for="s-m" class="s-label">M</label>
+                    <!--Large-->
+                    <input type="checkbox" class="s-checkbox" id="s-l">
+                    <label for="s-l" class="s-label">L</label>
+                </div>
+            </div>
+
+            <!--btn-->
+            <div class="product-button">
+                <a href="#" class="add-bag-btn">Add To Bag</a>
+                <a href="#" class="add-wishlist-btn">Add To Wishlist</a>
+            </div>
+            <!--help-btn-->
+            <a href="#" class="help-btn">Need Any Help?</a>
+        </div>
+    </div>
+</section>

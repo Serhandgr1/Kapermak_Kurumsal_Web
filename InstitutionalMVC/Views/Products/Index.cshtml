@@ -1,0 +1,220 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer localizer
+@model List<ProductDTO>
+
+<link rel="stylesheet" type="text/css" href="~/assets/css/main.css" />
+<style>
+    .pagination {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+        .pagination a {
+            color: #007BFF;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #007BFF;
+            margin: 0 5px;
+            border-radius: 4px;
+            max-height:35px;
+        }
+
+            .pagination a:hover {
+                background-color: #007BFF;
+                color: white;
+            }
+
+        .pagination .active {
+            background-color: #007BFF;
+            color: white;
+        }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 20px 0px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        text-align: center;
+    }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+    h3 {
+        margin-top: 10px;
+        font-size: 18px;
+        text-transform: capitalize;
+    }
+
+    h1 {
+        text-align: center;
+        margin: 2rem;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    #page-numbers {
+        margin-top: 5px;
+        font-size: 16px;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 4px 8px;
+        text-decoration: none;
+    }
+
+    .pagination button {
+        padding: 5px 10px;
+        margin: 0 5px;
+        cursor: pointer;
+        outline: 1px solid #494a4f;
+        border-radius: 1px;
+        border: none;
+    }
+
+    .pagination a.active {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .hidden {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+    }
+
+    .pagination button.active {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .imgStyle {
+        width: 100%;
+        display:block;
+    }
+</style>
+<header class="">
+
+    <div class="header_bottom" style="box-shadow: 0px 0px  30px black; background-color:#e8e8e8;">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                    <img class="imgStyle" src="~/assets/images/logo.png" alt="">
+                </a>
+
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""> </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav  ">
+                        <li class="nav-item  ">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">@localizer["Home"]<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" asp-controller="Services" asp-action="Index">@localizer["Hizmetler"]</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" asp-controller="About" asp-action="Index">@localizer["Hakkımızda"]</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-controller="Products" asp-action="Index">@localizer["Ürünler"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Contact" asp-action="Index">@localizer["İletişim"]</a>
+                        </li>
+                        <partial name="_SelectLanguage" />
+
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="project_section " style="background-color:#e8e8e8;">
+        <div id="data-container">
+            <div class="products">
+                <div class="container">
+                <h1 class="lg-title">@localizer["Ürünler"]</h1>
+                    <div class="filter-btns">
+                    <a type="button" class="filter-btn" id="all" href="@Url.Action("Index", "Products",  new {category=0})">@localizer["Tümü"]</a>
+                    @foreach (var item in @ViewBag.Category)
+                    {
+                        <a type="button" class="filter-btn" id="all" href="@Url.Action("Index", "Products",  new {category=item.Id})">@localizer[item.CategoryName]</a>
+                    }
+                        <div class="input-box">
+                            <i class="uil uil-search"></i>
+                        <input type="text" id="arama" placeholder="@localizer["Ürün adı"]" />
+                        <a class="button search-btn" id="search">@localizer["Ara"]</a>
+                        </div>
+                    </div>
+                    <div class="product-items">
+                        @foreach(var item in Model)
+                    { 
+                        <div class="product-item all  best-sellers">
+                            <div class="product ">
+                                <div class="product-content">
+                                    <a class="nav-link" href="@Url.Action("ProductDetail", "Products",  new {Id=item.Id})">
+                                        <div class="product-img">
+                                            <img class="imgStyle" src="~/assets/images/@item?.ProductImage" alt="product image">
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="product-info">
+                                    <div class="product-info-top">
+                                        <h2 name="ProductTitle" asp-for="Model.ProductTitle" class="sm-title" style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@localizer[item.ProductTitle]</h2>
+                                    </div>
+                                    <a name="ProductDetail" asp-for="Model.ProductDetail" href="#" class="product-name" style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@localizer[item.ProductDetail]</a>
+                                    <p class="product-price" style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@if (!string.IsNullOrEmpty(item.ProductSpacial))
+                                        {
+                                            @localizer[item.ProductSpacial]
+                                        }</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Add more cards as needed -->
+        <div class="container">
+            <div class="pagination" id="pagination">
+            <a href="@Url.Action("Index", "Products",  new{PageNumber=(@ViewBag.PageNumber>1?@ViewBag.PageNumber-1:@ViewBag.PageNumber)})">Previous</a>
+            <a href="@Url.Action("Index", "Products",  new{PageNumber=(Model.Count==@ViewBag.screenSize?@ViewBag.PageNumber+1:@ViewBag.PageNumber)})">Next</a>
+                <p id="page-numbers"> </p>
+            </div>
+        </div>
+    </section>
+
+

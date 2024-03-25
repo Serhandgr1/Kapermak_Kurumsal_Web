@@ -1,0 +1,43 @@
+﻿@model NewProjeClient
+@{
+    Layout = "_AdminLayout";
+}
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Proje Güncelle</h4>
+            <p class="card-description"> Proje Bilgileri </p>
+            <form class="forms-sample" asp-action="UpdateProject" method="post" asp-controller="Projects" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="text" asp-for="Id" style="display:none;">
+                    <label for="exampleInputName1">Proje Adı</label>
+                    <input type="text" asp-for="ProjectTitle" class="form-control" id="exampleInputName1" placeholder="Proje Adı" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" asp-for="Id" style="display:none;">
+                    <label for="exampleInputName1">En Proje Adı</label>
+                    <input type="text" asp-for="EnProjectTitle" class="form-control" id="exampleInputName1" placeholder="Proje Adı" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Proje Açıklaması</label>
+                    <input type="text" asp-for="ProjectDetail" class="form-control" id="exampleInputEmail3" placeholder="Proje Açıklaması" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">En Proje Açıklaması</label>
+                    <input type="text" asp-for="EnProjectDetail" class="form-control" id="exampleInputEmail3" placeholder="Proje Açıklaması" required>
+                </div>
+                <div class="form-group">
+                    <label>Resim Yükle (Zorunlu)</label><br />
+                    <input type="file" name="ProjectImage" asp-for="ProjectImage" class="btn btn-primary"> 
+                    @if (!string.IsNullOrEmpty(Model.Image)) 
+                    {
+                        <p>Mevcut Resim</p><img name="Image" asp-for="Image" src="~/assets/images/@Model?.Image" style="width:75px; height:50px;" />
+                        
+                    }
+                </div>
+                <button type="submit" id="btn" class="btn btn-primary mr-2">GÖNDER</button>
+                <a class="btn btn-dark" href="@Url.Action("GetAllProjectIndex","Projects")">VAZGEÇ</a>
+            </form>
+        </div>
+    </div>
+</div>

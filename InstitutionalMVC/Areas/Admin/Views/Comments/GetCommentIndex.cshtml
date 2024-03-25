@@ -1,0 +1,64 @@
+﻿@model List<CommentsClientDto>
+@{
+        Layout = "_AdminLayout";
+}
+<script src="~/assets/js/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Yorum Yazıları</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Yorum Yapanın Ünvanı</th>
+                        <th>Yorum Yapanın Adı</th>
+                        <th>Tr Yorum İçeriği</th>
+                        <th>En Yorum İçeriği</th>
+                        <th>Avatar resmi</th>
+                        <th>Sil/Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {    
+                            <tr>
+                            <td>@item.CommentTitle</td>
+                            <td>@item.CommentName</td>
+                            <td>@item.TrLangueDetail</td>
+                            <td>@item.EnLangueDetail</td>
+                            <td><img style="width:75px; height:50px;" src="~/assets/images/@item?.CommentImage" /></td>
+                            <td>
+                                <button class="btn btn-outline-danger" id="btn1">@Html.ActionLink("Sil", "DeleteComment",new{id=item.Id}, new { @class="btn btn-warning", onclick = "return confirm('Silmek istediğinizden emin misiniz?')"})</button>
+                                <a class="btn btn-outline-warning" href="@Url.Action("GetUpdateIndex" , "Comments" , new {Id=item.Id,CommentName=item.CommentName,CommentTitle=item.CommentTitle,TrLangueDetail=item.TrLangueDetail,EnLangueDetail=item.EnLangueDetail,CommentImage=item.CommentImage,CommentDetail=item.CommentDetail})">Güncelle</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <input style="display:none;" id="bag" value="@ViewBag.Message"/>
+    </div>
+</div>
+<script>
+    var data = document.getElementById("bag").value;
+    console.log("DATA " + data);
+    if (data == "Başarılı") {
+        swal("Yorum Silindi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız")
+    {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    } else if (data == "UpdateBaşarılı")
+    {
+        swal("Güncelleme işleminiz başarı!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    }
+</script>

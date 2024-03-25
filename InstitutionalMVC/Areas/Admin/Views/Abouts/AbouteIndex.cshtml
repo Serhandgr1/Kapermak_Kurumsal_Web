@@ -1,0 +1,60 @@
+﻿@model NewAboutClient
+@{
+    Layout = "_AdminLayout";
+}
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Hakkımda Ekle</h4>
+            <p class="card-description"> Hakkımda Bilgileri </p>
+            <form class="forms-sample" asp-action="PostsAboute" method="post" asp-controller="Abouts" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputName1">Hakkımda Yazı Başlığı</label>
+                    <input type="text" asp-for="Title" class="form-control" id="exampleInputName1" placeholder="Hakkımda Yazı Başlığı">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Hakkımda Yazı Başlığı</label>
+                    <input type="text" asp-for="EnTitle" class="form-control" id="exampleInputName1" placeholder="Hakkımda Yazı Başlığı">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Hakkımda İçeriği</label>
+                    <input type="text" asp-for="Contents" class="form-control" id="exampleInputEmail3" placeholder="Hakkımda İçeriği">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Hakkımda İçeriği</label>
+                    <input type="text" asp-for="EnContents" class="form-control" id="exampleInputEmail3" placeholder="Hakkımda İçeriği">
+                </div>
+                <div class="form-group">
+                    <label>Resim Yükle (Zorunlu)</label><br />
+                    <input type="file" name="Image" asp-for="Image" class="btn btn-primary" required>
+                </div>
+                <div class="form-group">
+                    <label>2.Resim Yükle (isteğe bağlı)</label><br />
+                    <input type="file" name="Image2" asp-for="Image2" class="btn btn-primary">
+                </div>
+                <div class="form-group">
+                    <label>3.Resim Yükle (isteğe bağlı)</label><br />
+                    <input type="file" name="Image3" asp-for="Image3" class="btn btn-primary">
+                </div>
+                <button type="submit" id="btn" class="btn btn-primary mr-2">GÖNDER</button>
+                <a class="btn btn-dark">VAZGEÇ</a>
+            </form>
+        </div>
+    </div>
+    <input id="bag" style="display:none;" value="@ViewBag?.Message" />
+</div>
+<script>
+    var data = document.getElementById("bag").value;
+    console.log("DATA " + data);
+    if (data == "Başarılı") {
+        swal("Yorum Eklendi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız") {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    }
+</script>

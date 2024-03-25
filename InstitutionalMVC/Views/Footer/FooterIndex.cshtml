@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer localizer
+@model List<ContactAdminDTO>
+<section class="info_section ">
+    <div class="container">
+
+        <div class="contact_nav">
+            @foreach(var item in Model)
+            {
+                <a href="">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <span>
+                        @item.AdminPhoneNumber
+                    </span>
+                </a>
+                <a href="">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <span>
+                        @item.AdminMail
+                    </span>
+                </a>
+                <a href="">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span>
+                        @item.AdminAddress
+                    </span>
+                </a>
+            }
+          
+        </div>
+        <div class="info_bottom">
+            <div class="row">
+                <div class="col-md-4 ml-auto">
+                    <div class="social_box">
+                        <a href="">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<footer class="footer_section">
+    <div class="">
+        <p>
+            &copy; <span id="displayYear"></span> @localizer["Tüm hakları saklıdır"]
+            <a href="@Url.Action("Index","Home")">Kapermak.com</a>
+        </p>
+    </div>
+</footer>

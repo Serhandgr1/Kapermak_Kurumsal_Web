@@ -1,0 +1,138 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer localizer
+@model Tuple<List<AboutDTO>,List<ReferangeDTO>>
+<header class="">
+
+    <div class="header_bottom" style="box-shadow: 0px 0px  30px black; background-color:#e8e8e8;">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                    <img src="~/assets/images/logo.png" alt="">
+                </a>
+
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""> </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav  ">
+                        <li class="nav-item  ">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">@localizer["Home"]<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" asp-controller="Services" asp-action="Index">@localizer["Hizmetler"]</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-controller="About" asp-action="Index">@localizer["Hakkımızda"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Products" asp-action="Index">@localizer["Ürünler"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Contact" asp-action="Index">@localizer["İletişim"]</a>
+                        </li>
+                       <partial  name="_SelectLanguage" /> 
+                      
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+    <!-- about section -->
+<section class="service_section about_section  layout_padding" style="align-items: center;">
+    <div class="service_container">
+    <div class="container">
+            <div class="">
+                <h2>
+                    @localizer["Hakkımızda"] 
+                </h2>
+            </div>
+        <div class="row">
+                @foreach (var item in Model.Item1)
+                {
+                    <div class="col-md-6">
+                        <div class="detail-box">
+                            
+                            <h3>
+                                @localizer[item.Title]  
+                            </h3>
+                            <p>
+                                @localizer[item.Contents]
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 " >
+                        <div class="img-box">
+                            <marquee behavior=alternate>
+                                @foreach(var items in Model.Item1)
+                                {
+                                    <img src="~/assets/images/@item?.Image" alt="" style="width:100%; height:300px; object-fit: contain;">
+                                    <img src="~/assets/images/@item?.Image2" alt="" style="width:100%; height:300px; object-fit: contain;">
+                                    <img src="~/assets/images/@item?.Image3" alt="" style="width:100%; height:300px; object-fit: contain;">
+                                }
+                            </marquee>
+                        </div>
+                    </div>
+                }
+
+        </div>
+    </div>
+    </div>
+</section>
+<section class="service_section about_section " style="align-items: center;">
+    <div class="service_container">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="detail-box">
+                    <div class="heading_container">
+                        <h2>
+                                @localizer["Referanslar"]
+                        </h2>
+                    </div>
+                            @foreach (var item in Model.Item2)
+                            {
+                            <p>
+                                @item.ReferangeName
+                            </p>
+                            }
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="img-box">
+                    <marquee behavior=alternate>
+                            @foreach (var item in Model.Item2)
+                            {
+                                <img src="~/assets/images/@item?.ReferangeImage" alt="">
+                            }
+
+                    </marquee>
+           
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<section class="service_section about_section " style="align-items: center;">
+    <div class="service_container">
+        <div class="container">
+            <h2> @localizer["Sertifikalarımız"]</h2><br />
+            <div class="row">
+                <embed src="~/assets/images/sertifikalar/kapermak1ing1.pdf" type="application/pdf" height="500px" width="100%">
+                <embed src="~/assets/images/sertifikalar/kapermak1ing2.pdf" type="application/pdf" height="500px" width="100%">
+                <embed src="~/assets/images/sertifikalar/kapermak1ing3.pdf" type="application/pdf" height="500px" width="100%">
+                <embed src="~/assets/images/sertifikalar/kapermak1ing4.pdf" type="application/pdf" height="500px" width="100%">
+                <embed src="~/assets/images/sertifikalar/kapermak1ing5.pdf" type="application/pdf" height="500px" width="100%">
+                <embed src="~/assets/images/sertifikalar/kapermak1ing6.pdf" type="application/pdf" height="500px" width="100%">
+
+            </div> 
+        </div> 
+    </div>
+</section>
+    <!-- end about section -->
+    <!-- info section -->

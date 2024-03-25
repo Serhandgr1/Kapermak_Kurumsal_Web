@@ -1,0 +1,48 @@
+﻿@model NewPreferanceDto
+@{
+    Layout = "_AdminLayout";
+}
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Tercih Sebebi Güncelle</h4>
+            <p class="card-description"> Tercih Bilgileri </p>
+            <form class="forms-sample" asp-action="UpdatePreference" asp-controller="Preference" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="text" asp-for="Id" style="display:none" />
+                    <label for="exampleInputName1">Tercih Başlığı</label>
+                    <input type="text" asp-for="PreferenceTitle" class="form-control" id="exampleInputName1" placeholder="Tercih Başlığı">
+                </div>
+                <div class="form-group">
+                    <input type="text" asp-for="Id" style="display:none" />
+                    <label for="exampleInputName1">Tercih Başlığı</label>
+                    <input type="text" asp-for="EnPreferenceTitle" class="form-control" id="exampleInputName1" placeholder="Tercih Başlığı">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Tercih Açıklaması</label>
+                    <input type="text" asp-for="PreferenceDetail" class="form-control" id="exampleInputEmail3" placeholder="Tercih Açıklaması">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Tercih Açıklaması</label>
+                    <input type="text" asp-for="EnPreferenceDetail" class="form-control" id="exampleInputEmail3" placeholder="Tercih Açıklaması">
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelectGender">Tercih sebebi Avatarı seç</label>
+                    <select class="form-control" asp-for="PreferenceImage" data-selected=@Model.PreferenceImage id="exampleSelectGender">
+                        <option value="Hız">Hız</option>
+                        <option value="İletişim">İletişim</option>
+                        <option value="Kadro">Kadro</option>
+                        <option value="İşletme">İşletme</option>
+                    </select>
+                </div>
+                <button type="submit" id="btn" class="btn btn-primary mr-2">GÖNDER</button>
+                <a class="btn btn-dark" href="@Url.Action("GetAllPreferanceIndex","Preference")">VAZGEÇ</a>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('[data-selected]').forEach(e => {
+        e.value = e.dataset.selected
+    });
+</script>

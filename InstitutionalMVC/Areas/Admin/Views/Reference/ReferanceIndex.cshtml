@@ -1,0 +1,46 @@
+﻿@model NewReferanceClient
+@{
+    Layout = "_AdminLayout";
+}
+<script src="~/assets/js/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Referans Ekle</h4>
+            <p class="card-description"> Referans Bilgileri </p>
+            <form class="forms-sample" asp-action="PostsReferance" method="post" asp-controller="Reference" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputName1">Referans Adı</label>
+                    <input type="text" asp-for="ReferangeName" class="form-control" id="exampleInputName1" placeholder="Referans Adı" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Referans Açıklaması</label>
+                    <input type="text" asp-for="ReferangeDetail" class="form-control" id="exampleInputEmail3" placeholder="Referans Açıklaması">
+                </div>
+                <div class="form-group">
+                    <label>Resim Yükle (Zorunlu)</label><br />
+                    <input type="file" name="ReferangeImage" asp-for="ReferangeImage" class="btn btn-primary" required>
+                </div>
+                <button type="submit" id="btn" class="btn btn-primary mr-2">GÖNDER</button>
+                <a class="btn btn-dark">VAZGEÇ</a>
+            </form>
+        </div>
+        <input id="bag" style="display:none;" value="@ViewBag?.Message" />
+    </div>
+</div>
+<script>
+    var data = document.getElementById("bag").value;
+    console.log("DATA " + data);
+    if (data == "Başarılı") {
+        swal("Referans Eklendi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız") {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    }
+</script>

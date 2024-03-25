@@ -1,0 +1,59 @@
+﻿@model NewPreferanceDto
+@{
+    Layout = "_AdminLayout";
+}
+<script src="~/assets/js/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Tercih Sebebi Ekle</h4>
+            <p class="card-description"> Tercih Bilgileri </p>
+            <form class="forms-sample" asp-action="PostsPreference" method="post" asp-controller="Preference" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputName1">Tercih Başlığı</label>
+                    <input type="text" asp-for="PreferenceTitle" class="form-control" id="exampleInputName1" placeholder="Tercih Başlığı">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">İngilizce Tercih Başlığı</label>
+                    <input type="text" asp-for="EnPreferenceTitle" class="form-control" id="exampleInputName1" placeholder="En Tercih Başlığı">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Tercih Açıklaması</label>
+                    <input type="text" asp-for="PreferenceDetail" class="form-control" id="exampleInputEmail3" placeholder="Tercih Açıklaması">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">İngilizce Tercih Açıklaması</label>
+                    <input type="text" asp-for="EnPreferenceDetail" class="form-control" id="exampleInputEmail3" placeholder="En Tercih Açıklaması">
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelectGender">Tercih sebebi Avatarı seç</label>
+                    <select class="form-control" asp-for="PreferenceImage" id="exampleSelectGender">
+                        <option>Hız</option>
+                        <option>İletişim</option>
+                        <option>Kadro</option>
+                        <option>İşletme</option>
+                    </select>
+                </div>
+                <button type="submit" id="btn" class="btn btn-primary mr-2">GÖNDER</button>
+                <a class="btn btn-dark">VAZGEÇ</a>
+            </form>
+        </div>
+    </div>
+    <input id="bag" style="display:none;" value="@ViewBag?.Message" />
+</div>
+<script>
+    var data = document.getElementById("bag").value;
+    console.log("DATA " + data);
+    if (data == "Başarılı") {
+        swal("Tercih Eklendi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız") {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    }
+</script>

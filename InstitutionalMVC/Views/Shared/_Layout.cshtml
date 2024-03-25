@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Fonicy</title>
+    <!-- searchbar css -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link href="~/assets/css/search.css" rel="stylesheet" />
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.css" />
+    <!-- product core css -->
+    <!-- product flitre css -->
+    <link href="~/assets/css/flitre.css" rel="stylesheet" />
+
+    <!-- product Detail css -->
+    <!-- product Detail css -->
+    <link href="~/assets/css/productdetail.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!--==Using-Font-Awesome-for-Icons=====-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <!--==Poppins-font=====================-->
+
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    <!-- font awesome style -->
+    <link href="~/assets/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/assets/css/stylee.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="~/assets/css/responsive.css" rel="stylesheet" />
+
+</head>
+<body class=""> 
+    <div class="">
+        <main role="main" class="pb-3">
+       
+                @RenderBody()
+        
+       
+            @Html.Action("Index","Footer")
+        </main>
+        
+    </div>
+    <script src="~/assets/js/jquery-3.4.1.min.js"></script>
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <!-- bootstrap js -->
+    <script src="~/assets/js/bootstrap.js"></script>
+    <!-- product js -->
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+    <!-- owl slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <!--  OwlCarousel 2 - Filter -->
+    <script src="https://huynhhuynh.github.io/owlcarousel2-filter/dist/owlcarousel2-filter.min.js"></script>
+    <!-- custom js -->
+    <script src="~/assets/js/custom.js"></script>
+    <!-- Product detail js -->
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+            integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+            crossorigin="anonymous"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+
+    <!-- Product flitre  js -->
+    <script src="~/assets/js/flitre.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                450: {
+                    slidesPerView: 2,
+                    spaceBetween: 0,
+                },
+                820: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                },
+                1024: {
+                    slidesPerView: 2,
+                    spaceBetween: 0,
+                },
+            },
+        });
+
+
+        $('.s-checkbox').on('change', function () {
+            $('.s-checkbox').not(this).prop('checked', false);
+        });
+    </script>
+    <script type="text/javascript" src="https://paracevirici.com/servis/widget/widget.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            typeof $.fn.paraceviriciWidget == "function" &&
+                $("#W6362").paraceviriciWidget({
+                    wData: {
+                        category: 0,
+                        currency: "USD"
+                    },
+                    wSize: {
+                        wWidth: 180,
+                        wHeight: 20
+                    }
+                });
+        });
+
+    </script>
+
+    <!-- pagination js -->
+  @*  <script>
+        let item =1;
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        prevButton.addEventListener("click",()=>{
+        item--;
+            $.ajax({
+                url: "@Url.Action("Index", "Products",  new{PageNumber=" "})" + item, 
+            });
+          });
+        nextButton.addEventListener("click",()=>{
+            item++;
+            $.ajax({
+                url: "@Url.Action("Index", "Products",  new{PageNumber=" "})" + item,
+            });
+        });
+    </script>*@
+   @* <script>
+        var cardsPerPage = 8; // Number of cards to show per page
+        if ((screen.width >= 1024)) {
+            cardsPerPage = 8;
+        } else if ((screen.width < 1024) && (screen.width >= 768)) {
+            cardsPerPage = 4;
+        } else if ((screen.width < 768) && (screen.width >= 360)) {
+            cardsPerPage = 2;
+        } else if ((screen.width < 360)) {
+            cardsPerPage = 1;
+        }
+        const dataContainer = document.getElementById('data-container');
+        const pagination = document.getElementById('pagination');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        const pageNumbers = document.getElementById('page-numbers');
+        const pageLinks = document.querySelectorAll('.page-link');
+
+        const cards =
+            Array.from(dataContainer.getElementsByClassName('product'));
+
+        // Calculate the total number of pages
+        const totalPages = Math.ceil(cards.length / cardsPerPage);
+        let currentPage = 1;
+
+        // Function to display cards for a specific page
+        function displayPage(page) {
+            const startIndex = (page - 1) * cardsPerPage;
+            const endIndex = startIndex + cardsPerPage;
+            cards.forEach((card, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+       
+        // Function to update pagination buttons and page numbers
+        function updatePagination() {
+            pageNumbers.textContent =
+                `Page ${currentPage} of ${totalPages}`;
+            prevButton.disabled = currentPage === 1;
+            nextButton.disabled = currentPage === totalPages;
+            pageLinks.forEach((link) => {
+                const page = parseInt(link.getAttribute('data-page'));
+                link.classList.toggle('active', page === currentPage);
+            });
+        }
+       
+        // Event listener for "Previous" button
+        prevButton.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage = currentPage - 1;
+                console.log(currentPage);
+                displayPage(currentPage);
+                document.getElementById("prev").href = "@Url.Action("Index", "Products",  new{PageNumber=" "})" + currentPage;
+
+                //$.ajax({
+
+                //     //url: "@Url.Action("Index", "Products",  new{PageNumber=" "})" + currentPage,
+                //    //type: "GET",
+                //    ////data: { 'PageNumber': currentPage },
+                //    //dataType: "json",
+                //    //success: function (msg) {
+                //    //    console.log(msg);
+                //    //},
+                //});
+                updatePagination();
+            }
+        });
+        // Event listener for "Next" button
+
+
+        nextButton.addEventListener('click', () => {
+            currentPage = currentPage + 1;
+            console.log(currentPage);
+            displayPage(currentPage);
+            document.getElementById("next").href = "@Url.Action("Index", "Products",  new{PageNumber=" "})" + currentPage;
+            
+            //$.ajax({
+            //    //document.getElementById("next").href = "@Url.Action("Index", "Products",  new{PageNumber=" "})" + currentPage;
+            //    //url: "@Url.Action("Index", "Products",  new{PageNumber=" "})" + currentPage,
+            //    //type: "GET",
+            //    ////data: { 'PageNumber': currentPage },
+            //    //dataType: "json",
+            //    //success: function (msg) {
+            //    //    console.log(msg);
+            //    //},
+            //});
+            updatePagination();
+        });
+
+
+        // Event listener for page number buttons
+        pageLinks.forEach((link) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = parseInt(link.getAttribute('data-page'));
+                if (page !== currentPage) {
+                    currentPage = page;
+                    displayPage(currentPage);
+                    updatePagination();
+                }
+            });
+        });
+
+        // Initial page load
+        displayPage(currentPage);
+        updatePagination();
+
+    </script>*@
+    <!-- UserScreen Size -->
+    <script>
+        var dongu = true;
+        var cardsPerPage = 8;
+        if ((screen.width >= 1024)) {
+            cardsPerPage = 8;
+        } else if ((screen.width < 1024) && (screen.width >= 768)) {
+            cardsPerPage = 4;
+        } else if ((screen.width < 768) && (screen.width >= 360)) {
+            cardsPerPage = 2;
+        } else if ((screen.width < 360)) {
+            cardsPerPage = 1;
+        }
+        if (dongu) {
+            let xhr = new XMLHttpRequest();
+            let url = 'https://localhost:7083/Products/UserScreenSize?size=' + cardsPerPage;
+            xhr.open("GET", url);
+            xhr.send();
+        }
+
+    </script>
+    <script src="https://cdn.josetxu.com/js/pure-pajinate.es5.min.js"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+    </script>
+        <!-- Search script -->
+
+    <script type="text/javascript">
+        
+        var value="";
+        $(document).ready(function () {
+            $("#search").click(function () {
+                value = $("#arama").val();
+                console.log("girilen değer  " + 0 + value);
+                document.getElementById("search").href = "@Url.Action("Index", "Products",  new{search=" "})" + value;
+            });
+            //let xhr = new XMLHttpRequest();
+            //let url = 'https://localhost:7083/Products/Index?search=' + value;
+            //xhr.open("GET", url);
+            //xhr.send();
+        });
+        
+    </script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+    <div class="snackbars" id="form-output-global"></div>
+</body>
+</html>

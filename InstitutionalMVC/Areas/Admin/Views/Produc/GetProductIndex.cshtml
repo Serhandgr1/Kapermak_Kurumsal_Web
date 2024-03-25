@@ -1,0 +1,248 @@
+﻿@model List<ProductDTO>
+@{
+    Layout = "_AdminLayout";
+}
+<script src="~/assets/js/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="~/assets/css/main.css" />
+<link href="~/assets/css/flitre.css" rel="stylesheet" />
+<link href="~/assets/css/search.css" rel="stylesheet" />
+@*<style>
+    .pagination {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+        .pagination a {
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #007BFF;
+            margin: 0 5px;
+            border-radius: 4px;
+            max-height: 35px;
+        }
+
+            .pagination a:hover {
+                background-color: #007BFF;
+                color: red;
+            }
+
+        .pagination .active {
+            background-color: #007BFF;
+            color: white;
+        }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 20px 0px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        text-align: center;
+    }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+    h3 {
+        margin-top: 10px;
+        font-size: 18px;
+        text-transform: capitalize;
+    }
+
+    h1 {
+        text-align: center;
+        margin: 2rem;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    #page-numbers {
+        margin-top: 5px;
+        font-size: 16px;
+    }
+
+    .pagination a {
+        color: white;
+        float: left;
+        padding: 4px 8px;
+        text-decoration: none;
+    }
+
+    .pagination button {
+        padding: 5px 10px;
+        margin: 0 5px;
+        cursor: pointer;
+        outline: 1px solid #494a4f;
+        border-radius: 1px;
+        border: none;
+    }
+
+    .pagination a.active {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .hidden {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+    }
+
+    .pagination button.active {
+        background-color: #007bff;
+        color: white;
+    }
+
+</style>*@
+<div class="container">
+<h1 class="lg-title">Ürünlerimiz</h1>
+<div class="filter-btns">
+    <a type="button" class="filter-btn" id="all" href="@Url.Action("GetIndex", "Produc",  new {category=0})">Tümü</a>
+    @foreach (var item in @ViewBag.Category)
+    {
+        <a type="button" class="filter-btn" id="all" href="@Url.Action("GetIndex", "Produc",  new {category=item.Id})">@item.CategoryName</a>
+    }
+    <div class="input-box">
+        <input type="text" id="arama" placeholder="Ürün adı?" />
+        <a class="button search-btn" id="search">Ara</a>
+    </div>
+</div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Ürünler</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Ürün Adı</th>
+                        <th>Ürün Detayı</th>
+                        <th>Ürün Özelliği</th>
+                        <th>Resim</th>
+                        <th>Resim 2</th>
+                        <th>Resim 3</th>
+                        <th>Sil/Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td><p style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@item.ProductTitle</p> </td>
+                            <td><p style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@item.ProductDetail</td>
+                            <td> <p style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@item.ProductSpacial</p></td>
+                            <td><img style="width:75px; height:50px;" src="~/assets/images/@item.ProductImage" /></td>
+                            <td><img style="width:75px; height:50px;" src="~/assets/images/@item?.ProductImage2" /></td>
+                            <td><img style="width:75px; height:50px;" src="~/assets/images/@item?.ProductImage3" /></td>
+
+                            <td>
+                                <button class="btn btn-outline-danger" id="btn1">@Html.ActionLink("Sil", "DeleteProduct",new{id=item.Id}, new { @class="btn btn-warning", onclick = "return confirm('Silmek istediğinizden emin misiniz?')"})</button>
+                                <a class="btn btn-outline-warning" href="@Url.Action("GetUpdateIndex" , "Produc" , new {Id=item.Id ,ProductDetail=item.ProductDetail,ProductSpacial=item.ProductSpacial,CategoryId=item.CategoryId, ProductTitle=item.ProductTitle,CategoryName=item.CategoryName,ProductImage=item.ProductImage,ProductImage2=item.ProductImage2,ProductImage3=item.ProductImage3})">Güncelle</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <input style="display:none;" id="bag" value="@ViewBag.Message" />
+    </div>
+</div>
+<br />
+<br />
+<a class="btn btn-outline-danger" href="@Url.Action("GetIndex", "Produc",  new{PageNumber=(@ViewBag.PageNumber>1?@ViewBag.PageNumber-1:@ViewBag.PageNumber)})">Previous</a>
+<a class="btn btn-outline-danger" href="@Url.Action("GetIndex", "Produc",  new{PageNumber=(Model.Count==@ViewBag.screenSize?@ViewBag.PageNumber+1:@ViewBag.PageNumber)})">Next</a>
+@*
+<section class="project_section ">
+        <div class="products" style="background:none;">
+            <div class="container">
+                <h1 class="lg-title">Ürünlerimiz</h1>
+                <div class="filter-btns">
+                    <a type="button" class="filter-btn" id="all" href="@Url.Action("GetIndex", "Produc",  new {category=0})">all</a>
+                    @foreach (var item in @ViewBag.Category)
+                    {
+                        <a type="button" class="filter-btn" id="all" href="@Url.Action("GetIndex", "Produc",  new {category=item.Id})">@item.CategoryName</a>
+                    }
+                    <div class="input-box">
+                        <input type="text" id="arama" placeholder="Ürün adı?" />
+                        <a class="button search-btn" id="search">Ara</a>
+                    </div>
+                </div>
+               
+
+
+                <div class="product-items">
+                    @foreach (var item in Model)
+                    {
+                        <div class="product-item all  best-sellers">
+                            <div class="product">
+                                <div class="product-content">
+                                        <div class="product-img">
+                                        <img style="height:200px; width:200px;" src="~/assets/images/@item?.ProductImage" alt="product image">
+                                        </div>
+                                </div>
+                                <div class="product-info" style="background:none;">
+                                    <div class="product-info-top">
+                                        <h2 name="ProductTitle" asp-for="Model.ProductTitle" class="sm-title" style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@item.ProductTitle</h2>
+                                    </div>
+                                    <a name="ProductDetail" asp-for="Model.ProductDetail" href="#" class="product-name" style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;color:white">@item.ProductDetail</a>
+                                    <p class="product-price" style="width:200px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">@item?.ProductSpacial</p>
+                                </div>
+                                <button class="btn btn-outline-danger" id="btn1">@Html.ActionLink("Sil", "DeleteProduct",new{id=item.Id}, new { @class="btn btn-warning", onclick = "return confirm('Silmek istediğinizden emin misiniz?')"})</button>
+                                <a class="btn btn-outline-warning" href="@Url.Action("GetUpdateIndex" , "Produc" , new {Id=item.Id ,ProductDetail=item.ProductDetail,ProductSpacial=item.ProductSpacial,CategoryId=item.CategoryId, ProductTitle=item.ProductTitle,CategoryName=item.CategoryName,ProductImage=item.ProductImage,ProductImage2=item.ProductImage2,ProductImage3=item.ProductImage3})">Güncelle</a>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            
+           
+        </div>
+
+    </div>
+    
+</section>*@
+
+<script>
+    var data = document.getElementById("bag").value;
+    console.log("DATA " + data);
+    if (data == "Başarılı") {
+        swal("Ürün Silindi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız") {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    } else if (data == "UpdateBaşarılı") {
+        swal("Güncelleme işleminiz başarı!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    }
+</script>

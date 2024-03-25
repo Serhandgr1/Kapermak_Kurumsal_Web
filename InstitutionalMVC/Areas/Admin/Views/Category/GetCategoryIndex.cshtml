@@ -1,0 +1,85 @@
+﻿@model List<CategoryClientDto>
+@{
+    Layout = "_AdminLayout";
+}
+<script src="~/assets/js/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Yorum Yazıları</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tr Kategori Adı</th>
+                        <th>En Kategori Adı</th>
+                        <th>Kategoriye Bağlı Ürünler</th>
+                        <th>Sil/Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.TrLangue</td>
+                            <td>@item.EnLangue</td>
+                            <td>
+                             @if(@item.CategoryProduct == true)
+                                {
+                                        <p>Bu Kategoride Ürünleriniz Mevcut</p>
+                                }
+                                else
+                                {
+                                        <p>Kategoriye Bağlı Ürün Bulunmuyor</p>
+                                }
+                            </td>
+                            <td>
+                                @if (item.CategoryProduct == true) {<button class="btn btn-outline-danger" id="btn1" onclick="Sil()">Silinemez</button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-outline-danger" id="btn1">@Html.ActionLink("Sil", "DeleteCategory",new{id=item.Id}, new { @class="btn btn-warning", onclick = "return confirm('Silmek istediğinizden emin misiniz?')"})</button>
+                                }
+                                <a class="btn btn-outline-warning" href="@Url.Action("GetUpdateCategoryIndex" , "Category" , new {Id=item.Id,TrLangue=item.TrLangue ,EnLangue=item.EnLangue,CategoryProduct=item.CategoryProduct})">Güncelle</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <input style="display:none;" id="bag" value="@ViewBag.Message" />
+    </div>
+</div>
+<script>
+    function Sil()
+    {
+        swal("Bu Kategoriye bağlı ürünler mevcut olduğundan kategori silinemez", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    }
+    var data = document.getElementById("bag").value;
+    console.log("DATA " + data);
+    if (data == "Başarılı") {
+        swal("Kategori Silindi!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "Başarısız") {
+        swal("Hata Oluştu daha sonra tekrar deneyin!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    } else if (data == "UpdateBaşarılı") {
+        swal("Güncelleme işleminiz başarı!", {
+            icon: "success",
+            button: "Tamam!",
+        });
+    } else if (data == "true") {
+        swal("Bu Kategoriyi Silemezsiniz!", {
+            icon: "error",
+            button: "Tamam!",
+        });
+    }
+</script>
+

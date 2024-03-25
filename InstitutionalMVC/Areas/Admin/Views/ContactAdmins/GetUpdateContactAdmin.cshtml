@@ -1,0 +1,29 @@
+﻿@model ContactAdminDTO
+@{
+    Layout = "_AdminLayout";
+}
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Admin Bilgileri Güncelle</h4>
+            <p class="card-description"> İletişim Bilgileri </p>
+            <form class="forms-sample" asp-action="UpdateContactAdmin" asp-controller="ContactAdmins">
+                <div class="form-group">
+                    <input type="text" asp-for="Id" style="display:none;" />
+                    <label for="exampleInputName1">Admin Mail</label>
+                    <input type="text" asp-for="AdminMail" class="form-control" id="exampleInputName1" placeholder="Admin Mail">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Admin Numara</label>
+                    <input type="text" asp-for="AdminPhoneNumber" class="form-control" id="exampleInputEmail3" placeholder="Admin Numara">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Admin Adres</label>
+                    <input type="text" asp-for="AdminAddress" class="form-control" id="exampleInputEmail3" placeholder="Admin Adres">
+                </div>
+                <button type="submit" id="btn" class="btn btn-primary mr-2">GÖNDER</button>
+                <a class="btn btn-dark" href="@Url.Action("GetAllAdminContact","ContactAdmins")">VAZGEÇ</a>
+            </form>
+        </div>
+    </div>
+</div>

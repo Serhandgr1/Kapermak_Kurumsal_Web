@@ -1,0 +1,64 @@
+﻿@model NewAboutClient
+@{
+    Layout = "_AdminLayout";
+}
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Hakkımda Yazısı Güncelle</h4>
+            <p class="card-description"> Hakkımda Bilgileri </p>
+            
+            <form class="forms-sample" asp-action="UpdateAboute" method="post" asp-controller="Abouts" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="text" asp-for="Id" style="display:none;"/>
+                    <label for="exampleInputName1">Hakkımda Tr Yazı Başlığı</label>
+                    <input type="text" asp-for="Title" class="form-control" id="exampleInputName1" placeholder="Hakkımda Yazı Başlığı">
+                </div>
+                <div class="form-group">
+                    <input type="text" asp-for="Id" style="display:none;" />
+                    <label for="exampleInputName1">Hakkımda En Yazı Başlığı</label>
+                    <input type="text" asp-for="EnTitle" class="form-control" id="exampleInputName1" placeholder="Hakkımda Yazı Başlığı">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Hakkımda Tr İçeriği</label>
+                    <input type="text" asp-for="Contents" class="form-control" id="exampleInputEmail3" placeholder="Hakkımda İçeriği">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Hakkımda En İçeriği</label>
+                    <input type="text" asp-for="EnContents" class="form-control" id="exampleInputEmail3" placeholder="Hakkımda İçeriği">
+                </div>
+                <div class="form-group">
+                    <label>Resim Yükle</label><br />
+                    <input type="file" name="Image" asp-for="Image" class="btn btn-primary">
+                    @if (!string.IsNullOrEmpty(Model.ImageClient))
+                    {
+                        <p>Mevcut Resim</p><img style="width:75px; height:50px;" src="~/assets/images/@Model?.ImageClient" />
+                    }
+                </div>
+                <div class="form-group">
+                    <label>2.Resim Yükle (isteğe bağlı)</label><br />
+                    <input type="file" name="Image2" asp-for="Image2" class="btn btn-primary">
+                    @if (!string.IsNullOrEmpty(Model.ImageClient))
+                    {
+                        <p>Mevcut Resim</p>
+
+                        <img style="width:75px; height:50px;" src="~/assets/images/@Model?.ImageClient2" />
+                    }
+                   
+                </div>
+                <div class="form-group">
+                    <label>3.Resim Yükle (isteğe bağlı)</label><br />
+                    <input type="file" name="Image3" asp-for="Image3" class="btn btn-primary">
+                    @if (!string.IsNullOrEmpty(Model.ImageClient))
+                    {
+                        <p>Mevcut Resim</p>
+                        <img style="width:75px; height:50px;" src="~/assets/images/@Model?.ImageClient3" />
+                    }
+                 
+                </div>
+                <button type="submit" id="btn" class="btn btn-primary mr-2">GÖNDER</button>
+                <button class="btn btn-dark" href="@Url.Action("GetAllIndex","Abouts")">VAZGEÇ</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\bin\Release\net7.0\DataAccessLayer.deps.json
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\bin\Release\net7.0\DataAccessLayer.runtimeconfig.json
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\bin\Release\net7.0\DataAccessLayer.dll
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\bin\Release\net7.0\DataAccessLayer.pdb
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\bin\Release\net7.0\EntitiesLayer.dll
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\bin\Release\net7.0\EntitiesLayer.pdb
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\obj\Release\net7.0\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\obj\Release\net7.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\obj\Release\net7.0\DataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\obj\Release\net7.0\DataAccessLayer.AssemblyInfo.cs
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\obj\Release\net7.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\obj\Release\net7.0\DataAccessLayer.csproj.CopyComplete
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\obj\Release\net7.0\DataAccessLayer.dll
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\obj\Release\net7.0\refint\DataAccessLayer.dll
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\obj\Release\net7.0\DataAccessLayer.pdb
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\obj\Release\net7.0\DataAccessLayer.genruntimeconfig.cache
+C:\Users\dogru\source\repos\Institutional\DataAccessLayer\obj\Release\net7.0\ref\DataAccessLayer.dll

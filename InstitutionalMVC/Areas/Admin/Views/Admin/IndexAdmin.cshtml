@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+<div style="text-align:center;">
+    <h1>ADMİN PANELE HOŞGELDİĞİN</h1>
+    <h1 id="token" style="display:none;">@ViewBag.Token</h1>
+</div>
+<script>
+    var deger = document.getElementById("token").innerHTML;
+    localStorage.setItem("myToken" , deger);
+</script>
+           
+
